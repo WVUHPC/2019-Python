@@ -1,8 +1,7 @@
 ---
-title: "Introduction to Python Programming"
-start: 540
-teaching: 30
-exercises: 30
+title: "The Python Standard Library"
+teaching: 60
+exercises: 60
 questions:
 - "Key question (FIXME)"
 objectives:

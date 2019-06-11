@@ -1,6 +1,5 @@
 ---
-title: "Introduction to Python Programming"
-start: 540
+title: "Methods, Classes and Modules"
 teaching: 30
 exercises: 30
 questions:

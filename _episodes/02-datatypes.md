@@ -1,6 +1,5 @@
 ---
-title: "Introduction to Python Programming"
-start: 540
+title: "Simple Data Types"
 teaching: 30
 exercises: 30
 questions:

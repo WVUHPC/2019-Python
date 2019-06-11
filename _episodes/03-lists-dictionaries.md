@@ -1,6 +1,5 @@
 ---
-title: "Introduction to Python Programming"
-start: 540
+title: "Tuples, Sequences, Lists and Dictionaries"
 teaching: 30
 exercises: 30
 questions:
