@@ -54,7 +54,7 @@ If you are working on Thorny Flat, all that you have to do is loading the
 environment module that will give you access to Python 3. In general HPC clusters today include old versions of python and usually limited to Python 2.x
 
 ~~~
-module load lang/gcc/8.2.0 lang/python/cpython_3.7.2_gcc82
+module load lang/gcc/8.2.0 lang/python/3.7.2_gcc82
 ~~~
 {: .language-bash}
 
