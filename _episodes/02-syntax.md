@@ -83,18 +83,6 @@ Remainder division (`%`), gives the remainder after division.
 
 Python follows the normal order of operations for math. The so called PEMDAS that stand for  "Parentheses, Exponents, Multiplication and Division, and Addition and Subtraction". This is the most common but not the only notation in existence.
 
-> ## PEMDAS
->
-> In the United States, the acronym PEMDAS is common. It stands for Parentheses, Exponents, Multiplication/Division, Addition/Subtraction. PEMDAS is often expanded to the mnemonic "Please Excuse My Dear Aunt Sally".
->
-> Canada and New Zealand use BEDMAS, standing for Brackets, Exponents, Division/Multiplication, Addition/Subtraction.
->
-> The parentheses (or brakets) reduces ambiguity in expressions where otherwise will end up in different results.
->
-> The PEMDAS is not the only notation in usage. The Reverse Polish notation (RPN), also known as Polish postfix notation or simply postfix notation, is a mathematical notation in which operators follow their operands and it is used in some old computers and calculators.
->
-{: .testimonial}
-
 ```python
 4 + 1 * 6
 ```
@@ -116,6 +104,22 @@ Note that there is no limit to the number of parentheses you can use.
 30
 ```
 {: .output}
+
+> ## PEMDAS
+>
+> In the United States, the acronym PEMDAS is common. It stands for Parentheses, Exponents, Multiplication/Division, Addition/Subtraction. PEMDAS is often expanded to the mnemonic "Please Excuse My Dear Aunt Sally".
+>
+> Canada and New Zealand use BEDMAS, standing for Brackets, Exponents, Division/Multiplication, Addition/Subtraction.
+>
+> The parentheses (or brakets) reduces ambiguity in expressions where otherwise will end up in different results.
+>
+> The PEMDAS is not the only notation in usage. The Reverse Polish notation (RPN), also known as Polish postfix notation or simply postfix notation, is a mathematical notation in which operators follow their operands and it is used in some old computers and calculators.
+>
+> An advantage of reverse Polish notation is that it removes the need for parentheses that are required by infix notation. 
+>
+>
+{: .testimonial}
+
 
 ## Variables
 
