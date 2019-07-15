@@ -1,7 +1,7 @@
 ---
 title: "Basic syntax"
-teaching: 30
-exercises: 30
+teaching: 120
+exercises: 60
 questions:
 - "Where do I start?"
 objectives:
