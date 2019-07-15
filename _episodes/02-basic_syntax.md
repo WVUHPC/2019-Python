@@ -1,14 +1,33 @@
 ---
 title: "Basic syntax"
-teaching: 120
-exercises: 60
+teaching: 60
+exercises: 120
 questions:
 - "Where do I start?"
 objectives:
 - "Understand basic Python syntax and data types."
 keypoints:
-- "Errors are there to help us."
+- "Use Python for: Interactive Scientific Computing"
+- "Use Python for: Scripts to automatize straightforward executions"
+- "Use Python for: Medium and Large Packages"
+- "Use Python for: GUI and Web Applications"
+
 ---
+
+## Different ways of using Python
+
+Python is a very flexible language and can be used in ways that in other circunstances will require several different languages and programming environments to produce a similar result.
+
+For this lesson we will be working from Jupyter notebooks and IPython terminals.
+It is easier to show and learn the basic syntax from there. Python can also be used for writing scripts, development of large codes with several modules and submodules and even for creating web applications.
+
+Lets have an overview of each one of them:
+
+### Interactive Scientific Computing
+
+In this case, Python works very similar to other environments like Matlab, Maple or Mathematica. You enter commands and they are execute after you click ENTER (IPython Terminal or qtconsole) or after executing SHIFT-ENTER
+
+Lets start with this minimal introduction to python using one of those environments.
 
 We start by using the IPython interpreter for interactive computing.
 The most basic use of Python is to use it as a fancy calculator.
@@ -36,6 +55,225 @@ Notice how leaving out `print()` gives us the same result as above.
 
 During Interactive computing you write your commands, usually as a single line that is executed after hitting enter.
 
+### Python for Scripting
+
+Python is also a good language for writing scripts. Scripts are defined as small (even not so small) pieces of code, normally written on a single file or just very few and indented to execute a relatively straightforward execution.
+
+They are written with a text editor and for Python 3.x should have `#!/usr/bin/env python3` on the first line of the file. Examples:
+
+~~~
+#!/usr/bin/env python3
+
+# break operator
+# prime numbers
+
+for n in range(2, 1000):
+    for x in range(2, n):
+        if n % x == 0:
+            print(n, 'equals', x, '*', int(n/x))
+            break
+    else:
+        # loop fell through without finding a factor
+        print(n, 'is a prime number')
+~~~
+{: .language-python}
+
+~~~
+#!/usr/bin/env python3
+
+def perm(l):
+        # Compute the list of all permutations of l
+    if len(l) <= 1:
+                  return [l]
+    r = []  # here is new list with all permutations!
+    for i in range(len(l)):
+             s = l[:i] + l[i+1:]
+             p = perm(s)
+             for x in p:
+              r.append(l[i:i+1] + x)
+    return r
+
+a=[1,2,3,4]
+
+print(perm(a))
+~~~
+{: .language-python}
+
+If you write this code in a file and make the file Executable
+
+~~~
+$ chmod +x permutation.py
+$ ./permutation.py
+~~~
+{: language-bash}
+~~~
+[[1, 2, 3, 4], [1, 2, 4, 3], [1, 3, 2, 4], [1, 3, 4, 2], [1, 4, 2, 3], [1, 4, 3, 2], [2, 1, 3, 4], [2, 1, 4, 3], [2, 3, 1, 4], [2, 3, 4, 1], [2, 4, 1, 3], [2, 4, 3, 1], [3, 1, 2, 4], [3, 1, 4, 2], [3, 2, 1, 4], [3, 2, 4, 1], [3, 4, 1, 2], [3, 4, 2, 1], [4, 1, 2, 3], [4, 1, 3, 2], [4, 2, 1, 3], [4, 2, 3, 1], [4, 3, 1, 2], [4, 3, 2, 1]]
+~~~
+{: .output}
+
+Do not worry if you do not understand, all these lines. All that you need to know is that Python Scripts can be written and you can actually convert interactive executions into scripts relatively easy.
+
+Scripts can gain more complexity, start using classes to cluster variables and methods and receive arguments from the command line, for example:
+
+~~~
+#!/usr/bin/env python3
+
+import argparse
+
+class MultDivClass:
+
+    def __init__(self, a=0, b=0):
+       self.a = a
+       self.b = b
+
+    def run(self):
+        self._private_product()
+        self._private_division()
+
+    # --- private
+    def _private_product(self):
+        print("The product of %f and %f is %f" % (self.a,self.b,self.a*self.b))
+
+    def _private_division(self):
+        if self.b == 0:
+            print("Division by zero!")
+        else:
+            print("The division of %f by %f is %f" % (self.a,self.b,self.a/self.b))
+
+if __name__ == "__main__":
+    """
+    Command line usage:
+    `python -m path.to.my_file -a 12 -b 23`
+    """
+
+    parser = argparse.ArgumentParser(description="Computes product and division checking for zeros on denominator")
+
+    parser.add_argument('--a_factor', '-a', help="First factor in product and division", type=float)
+    parser.add_argument('--b_factor', '-b', help="Second factor in product and division", type=float)
+
+    args = parser.parse_args()
+
+    run_once = MultDivClass(a=args.a_factor, b=args.b_factor)
+
+    run_once.run()
+~~~
+{: .language-python}
+
+In this example above, we are not only using classes. But also using argparse that is a module in the Standard Library to read arguments from the command line.
+
+### Python for large developments
+
+For large projects we need to add more structure than provided by simple scripts.
+
+Python offers the option to create packages. Set of Python files organized in folders. The important element here is that each folder must have a file callled `__init__.py`. Python uses that file to check if that folder must be understood as a module.
+
+Consider this structure:
+
+~~~
+chemist/
+    __init__.py
+    utils/
+        __init__.py
+        periodic.py
+        thermo.py
+    io/
+        __init__.py
+        xyz.py
+        pdb.py
+    md/
+      __init__.py
+      move.py
+      relax.py
+~~~
+{: .source}
+
+This structure of folders and files is interpreted by Python as as set of modules than can be imported. The purpose of the `__init__.py` files is to include optional initialization code that runs as different levels when the module is imported.
+
+For example `chemist/utils/__init__.py` could be like this:
+
+~~~
+# chemist/utils/__init__.py
+
+from . import periodic
+from . import thermo
+~~~
+{: .source}
+
+We will talk about modules and packages later on. This is just an overview of what Python can do.
+
+### Python for Web applications
+
+This is a topic that is beyond the scope of this lesson. But it is good to know that you can use Python also to create web applications. Two popular packages for that are [Python Bottle](https://bottlepy.org/docs/dev/) and [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+
+## Basic Syntax Notebook
+
+Most of these lessons are presented from Jupyter Notebooks. For the basic syntax the notebook is:
+
+~~~
+WVU Research Computing (02. Python Syntax).ipynb
+~~~
+
+After following the Notebook, you should be ready for the exercises.
+
+## Exercises:
+
+### Playing with your name
+
+Create a variable with your full name. Print your name in several ways.
+
+ * Capitalize your full name
+ * Write first your last name in capitals followed by comma and your First name with only the first letter Capitalize (title() function)
+ * Write your name backwards
+ * Remove all spaces from your full name and write it uppercase
+ * Remove all vowels from your name and write the resulting string.
+
+These exercises will invite you to use some of the functions available to strings. Some of them will require to use lists. There are several ways to achieve the result asked.
+
+### Playing with numbers
+
+Create a list with all the numbers from 0 to 999 and start removing all the numbers with these properties.
+
+  * The number is multiple of 7
+  * The first character is equal to the last character
+  * The number remains the same when written backwards
+  * The sum of the first and last digits is equal to the central digit
+
+How many numbers remained?
+
+The purpose of this exercise is to force you to use lists, conditionals and converting integers to strings and back to integers.
+
+### Platonic Solids
+
+There are 5 platonic solids and some of their basic properties are contained in the next table:
+
+| Polyhedrom  | Vertices | Edges | Faces | Schläfli Symbol | Vertex Configuration |
+|-------------|----------|-------|-------|-----------------|---------|
+| Tetrahedron  |	 4 	| 6 |	4 |	{3, 3} |	3.3.3 |
+| Hexahedron (cube) | 8 |	12 |	6 |	{4, 3} |	4.4.4 |
+| Octahedron 	 |   6 	| 12 |	8 |	{3, 4} |	3.3.3.3 |
+| Dodecahedron | 	20 	| 30 |	12 |	{5, 3} | 	5.5.5 |
+| Icosahedron  |	12 	| 30 |	20 |	{3, 5} |	3.3.3.3.3 |
+
+Store all these information in a Python Dictionary.
+The Schläfli symbol should be a tuple {p,q}, gives a combinatorial description of the polyhedron.
+
+  * p is the number of edges (or, equivalently, vertices) of each face, and
+  * q is the number of faces (or, equivalently, edges) that meet at each vertex.
+
+Use the Python dictionary that you populate to verify two important properties of the number of Vertices (V), Edges (E) and Faces (F)
+
+The first equation states that: (pF = 2E = qV)
+
+<img src="https://latex.codecogs.com/svg.latex?\LARGE&space;pF = 2E = qV" title="pF = 2E = qV" />
+
+
+and the relation discovered by Euler on the formula (V - E + F = 2):
+
+<img src="https://latex.codecogs.com/svg.latex?\LARGE&space;V - E + F = 2" title="V - E + F = 2" />
+
+Check the correctness of this relations.
+
+<!--
 Python can do all of the normal basic math operations you'd expect.
 
 ```python
@@ -115,7 +353,7 @@ Note that there is no limit to the number of parentheses you can use.
 >
 > The PEMDAS is not the only notation in usage. The Reverse Polish notation (RPN), also known as Polish postfix notation or simply postfix notation, is a mathematical notation in which operators follow their operands and it is used in some old computers and calculators.
 >
-> An advantage of reverse Polish notation is that it removes the need for parentheses that are required by infix notation. 
+> An advantage of reverse Polish notation is that it removes the need for parentheses that are required by infix notation.
 >
 >
 {: .testimonial}
@@ -492,5 +730,6 @@ NoneType
 > Is Python simply rounding floats to the nearest integer, or is it doing something else?
 {: .challenge}
 
+-->
 
 {% include links.md %}
