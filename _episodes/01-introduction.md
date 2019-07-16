@@ -14,6 +14,10 @@ keypoints:
 
 Python is an interpreted language that is relatively easy to learn and very suitable for scientific computing. The only drawback is performance, but with appropriated arrangements this can be overcome in most cases.
 
+<a href="{{ page.root }}/fig/lang-rank-118.png">
+  <img src="{{ page.root }}/fig/lang-rank-118.png" alt="lang-rank-118" />
+</a>
+
 ## Where to use Python?
 
 From the scientific computing point of view, Python is good to be used in a variety of contexts:
