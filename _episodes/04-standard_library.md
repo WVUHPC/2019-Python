@@ -55,5 +55,52 @@ The file was downloaded as `pharma_countries.json`
 
 Read that JSON file and get the collection of spending data for USA.
 
+## Rolling dices
+
+Compute all the possible outcomes of rolling 3 dices using the itertools module.
+
+## Multiprocessing
+
+Use the multiprocessing for computing the different k-mers for several sizes.
+
+This couple of functions can help, use them with the multiprocessing module to speed up the calculation.
+
+~~~
+import numpy as np
+
+genome = "".join(random.choice("AGCT") for _ in range(1000))
+
+def perfect_reads(genome, n_reads=10):
+    """Create perfect reads from `genome`"""
+    starts = np.random.randint(len(genome), size=n_reads)
+    length = np.random.randint(27,33, size=n_reads)
+    for n in range(n_reads):
+        low = starts[n]
+        yield genome[low:low + length[n]]
+
+def kmers(read, k=10):
+    """Generate `k`-mers from a `read`"""
+    for n in range(len(read) - k + 1):
+        yield read[n:n+k]
+
+def get_perfect_kmers(genome):
+    kmers_ = []
+    for read in perfect_reads(genome, n_reads=1000):
+        for kmer in kmers(read):
+            kmers_.append(kmer)
+
+    return kmers_    
+~~~
+{: .source}
+
+Verify that not matter the size of the k-mers, most of them end up being duplicates.
+
+~~~
+kmers_ = get_perfect_kmers(genome)
+# lots of kmers, but not that many are unique
+print(len(kmers_), len(set(kmers_)))
+~~~
+{: .source}
+
 
 {% include links.md %}
