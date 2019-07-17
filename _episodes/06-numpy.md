@@ -1,5 +1,6 @@
 ---
 title: "Numpy"
+start: 540
 teaching: 30
 exercises: 30
 questions:

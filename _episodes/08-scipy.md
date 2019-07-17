@@ -1,7 +1,7 @@
 ---
 title: "Scipy"
-teaching: 30
-exercises: 30
+teaching: 60
+exercises: 60
 questions:
 - "Key question (FIXME)"
 objectives:
