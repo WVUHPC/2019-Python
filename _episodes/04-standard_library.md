@@ -3,11 +3,11 @@ title: "The Python Standard Library"
 teaching: 60
 exercises: 60
 questions:
-- "Key question (FIXME)"
+- "What is the Standard Library and which are the main modules for scientific computing"
 objectives:
-- "First learning objective. (FIXME)"
+- "Understand the difference between the Standard Library and the Python Language itself"
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Several modules in the standard library are often used in Scientific Computing"
 ---
 
 ## The Notebook
@@ -15,7 +15,7 @@ keypoints:
 The material for this episode is on this notebook:
 
 ~~~
-WVU Research Computing (03. Python Standard Library).ipynb
+2_Python_Standard_Library [WVU Research Computing].ipynb
 ~~~
 {: .source}
 

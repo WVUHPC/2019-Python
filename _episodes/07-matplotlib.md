@@ -9,6 +9,16 @@ objectives:
 keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
-FIXME
+
+## The Notebook
+
+The material for this episode is on this notebook:
+
+~~~
+4_Matplotlib [WVU Research Computing].ipynb
+~~~
+{: .source}
+
+## Exercises
 
 {% include links.md %}

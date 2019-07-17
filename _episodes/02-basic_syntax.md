@@ -14,6 +14,15 @@ keypoints:
 
 ---
 
+## The Notebook
+
+The material for this episode is on this notebook:
+
+~~~
+1_Python_Syntax [WVU Research Computing].ipynb
+~~~
+{: .source}
+
 ## Different ways of using Python
 
 Python is a very flexible language and can be used in ways that in other circunstances will require several different languages and programming environments to produce a similar result.
